@@ -29,7 +29,7 @@ export class LoginComponent {
     this.authService.login(loginFormValue.email, loginFormValue.password).subscribe(
       response => {
         if (response.status === 200) {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/products']);
         }
       },
       error => {

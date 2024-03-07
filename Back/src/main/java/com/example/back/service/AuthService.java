@@ -1,11 +1,11 @@
 package com.example.back.service;
 
 import com.example.back.config.JwtService;
-import com.example.back.entity.AuthenticationResponse;
+import com.example.back.dto.AuthenticationResponse;
 import com.example.back.entity.Role;
 import com.example.back.entity.User;
-import com.example.back.payload.LoginDto;
-import com.example.back.payload.SignUpDto;
+import com.example.back.dto.LoginDto;
+import com.example.back.dto.SignUpDto;
 import com.example.back.repository.RoleRepository;
 import com.example.back.repository.UserRepository;
 import lombok.extern.log4j.Log4j2;
@@ -41,8 +41,7 @@ public class AuthService {
 			user.setUserLastname(request.getUserLastname());
 			user.setUserEmail(request.getUserEmail());
 			user.setUserPassword(passwordEncoder.encode(request.getUserPassword()));
-			user.setUserAddress(request.getUserAddress());
-			user.setUserGender(request.getUserGender());
+			user.setUserPhone(request.getUserPhone());
 
 			log.error(roleRepository.findByRoleName("User").get());
 			Role roles = roleRepository.findByRoleName("User").get();

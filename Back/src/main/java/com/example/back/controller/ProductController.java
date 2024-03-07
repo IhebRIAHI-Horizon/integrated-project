@@ -1,6 +1,6 @@
 package com.example.back.controller;
 
-import com.example.back.entity.PageResponse;
+import com.example.back.dto.PageResponse;
 import com.example.back.entity.Product;
 import com.example.back.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;

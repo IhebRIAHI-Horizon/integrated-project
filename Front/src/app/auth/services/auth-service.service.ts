@@ -64,6 +64,49 @@ export class AuthService {
     );
   }
 
+
+  register(firstname: string, lastname: string,email: string, phone:string, password: string): Observable<HttpResponse<any>> {
+    const request = {
+      userFirstname: firstname,
+      userLastname: lastname,
+      userEmail: email,
+      userPhone: phone,
+      userPassword: password
+    };
+    return this.http.post(`${this.baseUrl}/register`, request, { observe: 'response' }).pipe(
+      map(response => {
+        // Check if the response status is 200
+        if (response.status === 200) {
+          this.token = response.body['token'];
+          // Save the token in session storage
+          this.appCookieService.set("jwtToken",response.body['token']);
+          // Set the authentication status to true
+          this.authenticated.next(true);
+          // Return the response body as is
+          return response;
+        } else {
+          // If the response status is not 200, throw an error
+          throw new Error('An error occurred while logging in');
+        }
+      }),
+      catchError(error => {
+        // If the error status is 401, return the custom response from Spring Boot
+        if (error.status === 401) {
+          return throwError({
+            status: 'UNAUTHORIZED',
+            message: 'Invalid email or password'
+          });
+        } else {
+          // For any other error, throw a generic error message
+          return throwError({
+            status: 'ERROR',
+            message: 'An error occurred while logging in'
+          });
+        }
+      })
+    );
+  }
+
   getToken():string {
     return this.appCookieService.get("jwtToken")
   }
@@ -73,6 +116,7 @@ export class AuthService {
     console.log("logged out")
     this.token="";
     this.appCookieService.remove("jwtToken");
+    this.appCookieService.remove("refreshToken");
     this.authenticated.next(false);
     
     // Perform any other logout tasks such as clearing local storage
@@ -80,6 +124,10 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.authenticated.asObservable();
+  }
+
+  isLoggedIn():boolean{
+    return this.authenticated.value;
   }
 
 }

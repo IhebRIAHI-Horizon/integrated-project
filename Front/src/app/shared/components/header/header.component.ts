@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartComponent } from 'src/app/components/cart/cart.component';
 import { CartServicesService } from '../../services/cart-services.service';
+import { AuthService } from 'src/app/auth/services/auth-service.service';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(public cartModal: MatDialog,
     private cartService: CartServicesService,
-    private router: Router, private route: ActivatedRoute
+    private router: Router, private route: ActivatedRoute,
+    private authService: AuthService
   ) {
     this.cartService.getCart()
   }
@@ -41,4 +43,11 @@ export class HeaderComponent implements OnInit {
     return this.cartService.cartProductsNumber()
   }
 
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn():boolean{
+    return this.authService.isLoggedIn();
+  }
 }

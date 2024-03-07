@@ -1,4 +1,4 @@
-package com.example.back.entity;
+package com.example.back.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,5 +13,4 @@ public class AuthenticationResponse {
 	private int status;
 	private String message;
 	private String token;
-	
 }

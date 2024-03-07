@@ -1,5 +1,7 @@
-package com.example.back.entity;
+package com.example.back.dto;
 
+
+import com.example.back.entity.Product;
 
 import java.util.List;
 

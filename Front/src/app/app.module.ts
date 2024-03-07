@@ -26,8 +26,8 @@ import { AboutComponent } from './components/about/about.component';
 import { ProductsComponent } from './components/products/products.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { TopComponent } from './components/top/top.component';
-import { GMapModule } from 'primeng/gmap';
 import { CartComponent } from './components/cart/cart.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { CartComponent } from './components/cart/cart.component';
     ProductsComponent,
     TopComponent,
     NewCollectionComponent,
-    CartComponent
+    CartComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -58,8 +59,7 @@ import { CartComponent } from './components/cart/cart.component';
     MatSidenavModule,
     MatSliderModule,
     MatIconModule,
-    MatCardModule,
-    GMapModule
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
