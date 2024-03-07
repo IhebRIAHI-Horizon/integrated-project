@@ -1,0 +1,73 @@
+<app-header></app-header>
+
+<div class="container">
+  <form class="register-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <h2 class="title"> Register a new account</h2>
+    <div class="row">
+      <!-- Left column with 3 inputs -->
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Firstname</mat-label>
+          <input matInput placeholder="Firstname" name="firstname" formControlName="firstname" required>
+          <mat-error *ngIf="form['firstname'].invalid && form['firstname'].touched">
+            Please enter your firstname.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Lastname</mat-label>
+          <input matInput placeholder="Lastname" name="lastname" formControlName="lastname" required>
+          <mat-error *ngIf="form['lastname'].invalid && form['lastname'].touched">
+            Please enter your lastname.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Email" name="email" formControlName="email" required>
+          <mat-error *ngIf="form['email'].invalid && form['email'].touched">
+            Please enter a valid email address.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Right column with 3 inputs -->
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Phone Number</mat-label>
+          <input matInput placeholder="Phone Number" name="phone" formControlName="phone" required>
+          <mat-error *ngIf="form['phone'].invalid && form['phone'].touched">
+            Please enter a valid phone number.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Password" name="password" formControlName="password" required>
+          <mat-error *ngIf="form['password'].invalid && form['password'].touched">
+            Password must be at least 5 characters long.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width" hideRequiredMarker>
+          <mat-label>Confirm Password</mat-label>
+          <input matInput type="password" placeholder="Confirm Password" name="confirmPassword"
+            formControlName="confirmPassword" required>
+          <mat-error *ngIf="form['confirmPassword'].invalid && form['confirmPassword'].touched">
+            Passwords must match.
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div *ngIf="errorMessage" class="error-message">
+      {{ errorMessage }}
+    </div>
+
+    <div class="example-button-row">
+      <button class="dark" type="submit" [disabled]="loginForm.invalid">Register</button>
+    </div>
+
+    <div class="signup-link">Already have an account? <a [routerLink]="['/login']" routerLinkActive="router-link-active">Login here</a></div>
+  </form>
+</div>

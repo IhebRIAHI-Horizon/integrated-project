@@ -3,42 +3,51 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartComponent } from 'src/app/components/cart/cart.component';
 import { CartServicesService } from '../../services/cart-services.service';
+import { AuthService } from 'src/app/auth/services/auth-service.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
   name: any;
 
-  constructor(
-    public cartModal: MatDialog,
-    private cartService: CartServicesService,
-    private router: Router,
-    private route: ActivatedRoute
+  constructor(public cartModal: MatDialog,
+              private cartService: CartServicesService,
+              private router: Router, private route: ActivatedRoute,
+              private authService: AuthService
   ) {
-    this.cartService.getCart();
+    this.cartService.getCart()
   }
 
+
   ngOnInit(): void {
-    this.route.queryParamMap.subscribe((params) => {
+
+    this.route.queryParamMap.subscribe(params => {
       // Retrieve the query parameter value from the URL
       this.name = params.get('name');
     });
   }
 
   openCart() {
-    this.cartModal.open(CartComponent);
+    this.cartModal.open(CartComponent)
   }
 
   search(searchValue: string) {
-    this.router.navigate(['/search-products'], {
-      queryParams: { name: searchValue },
-    });
+    this.router.navigate(['/search-products'], { queryParams: { name: searchValue } });
   }
 
-  cartProductsNumber(): number {
-    return this.cartService.cartProductsNumber();
+  cartProductsNumber():number{
+    return this.cartService.cartProductsNumber()
+  }
+
+  logout(){
+    this.authService.logout();
+  }
+
+  isLoggedIn():boolean{
+    return this.authService.isLoggedIn();
   }
 }

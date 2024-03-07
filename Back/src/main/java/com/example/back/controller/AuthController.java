@@ -1,18 +1,17 @@
 
 package com.example.back.controller;
 
+import com.example.back.dto.AuthenticationResponse;
+import com.example.back.dto.LoginDto;
+import com.example.back.dto.SignUpDto;
+import com.example.back.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.back.entity.AuthenticationResponse;
-import com.example.back.payload.LoginDto;
-import com.example.back.payload.SignUpDto;
-import com.example.back.service.AuthService;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -22,17 +21,12 @@ public class AuthController {
 	private AuthService authService;
 
 	@PostMapping("/register")
-	public ResponseEntity<AuthenticationResponse> register(@RequestBody SignUpDto request) {
-		AuthenticationResponse response = authService.register(request);
-		if (response.getStatus() != 200) {
-			return new ResponseEntity<AuthenticationResponse>(response, HttpStatus.UNAUTHORIZED);
-		} else {
-			return new ResponseEntity<AuthenticationResponse>(response, HttpStatus.OK);
-		}
+	public ResponseEntity<AuthenticationResponse> register(@RequestBody SignUpDto request){
+		return ResponseEntity.ok(authService.register(request));
 	}
 
 	@PostMapping("/authenticate")
-	public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody LoginDto request) {
+	public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody LoginDto request){
 		return ResponseEntity.ok(authService.authenticate(request));
 	}
 
