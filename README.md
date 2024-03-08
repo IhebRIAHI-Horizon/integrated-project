@@ -7,5 +7,10 @@
 you need to create a .env file under this directory (checkout: env-example) ... then just:
 
 ```sh
+mv env-example > .env
 docker-compose up -d
 ```
+
+![K8s dashboard](./images/dashboard.png)
+![Grafana Dashboard](./images/grafana_prom.png)
+![All Resources](./images/all.png)

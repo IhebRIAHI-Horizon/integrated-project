@@ -76,6 +76,11 @@ services:
         condition: service_healthy
       db:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
     networks:
       - horizon-net
 
@@ -92,6 +97,11 @@ services:
       - 8000
     depends_on:
       - backend
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: "512M"
     networks:
       - horizon-net
 
