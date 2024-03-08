@@ -3,7 +3,7 @@ BRANCH=master
 COMPOSE_PATH_SEPARATOR=+
 COMPOSE_FILE=docker-compose.yml
 
-# postgres 
+# postgres
 POSTGRES_USER=horizon_admin
 POSTGRES_PASSWORD=this_string_is_strong
 POSTGRES_DB=horizon_homework

@@ -31,7 +31,7 @@ export class RegisterComponent {
   }
 
   onSubmit() {
-    
+
     const loginFormValue: LoginForm = this.loginForm.value;
     this.authService.register(loginFormValue.firstname,loginFormValue.lastname,loginFormValue.email,loginFormValue.phone, loginFormValue.password).subscribe(
       response => {

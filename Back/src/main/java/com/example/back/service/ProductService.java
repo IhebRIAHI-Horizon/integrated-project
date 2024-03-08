@@ -64,23 +64,23 @@ public class ProductService {
 				pageable);
 		/*
 		 * if (productMinPrice != 0 && productMaxPrice != 0) {
-		 * 
+		 *
 		 * return productRepo.
 		 * findByProductForAndProductNameContainingAndProductPriceBetweenOrderByProductAddDateDesc
 		 * (gender, name, productMinPrice, productMaxPrice, pageable);
-		 * 
+		 *
 		 * } else if (productMinPrice != 0) {
-		 * 
+		 *
 		 * return productRepo.
 		 * findByProductForAndProductNameContainingAndProductPriceGreaterThanOrderByProductAddDateDesc
 		 * (gender, name, productMinPrice, pageable);
-		 * 
+		 *
 		 * } else if (productMaxPrice != 0) {
-		 * 
+		 *
 		 * return productRepo.
 		 * findByProductForAndProductNameContainingAndProductPriceLessThanOrderByProductAddDateDesc
 		 * (gender, name, productMaxPrice, pageable);
-		 * 
+		 *
 		 * } else { return
 		 * productRepo.findByProductForAndProductNameContainingOrderByProductAddDateDesc
 		 * (gender,name, pageable); }
@@ -92,29 +92,29 @@ public class ProductService {
 	 * public Page<Product> getProductsByName(String name,
 	 * org.springframework.data.domain.Pageable pageable, double productMinPrice,
 	 * double productMaxPrice) {
-	 * 
+	 *
 	 * if (productMinPrice != 0 && productMaxPrice != 0) {
-	 * 
+	 *
 	 * return productRepo.
 	 * findByProductNameContainingAndProductPriceBetweenOrderByProductAddDateDesc(
 	 * name, productMinPrice, productMaxPrice, pageable);
-	 * 
+	 *
 	 * } else if (productMinPrice != 0) {
-	 * 
+	 *
 	 * return productRepo.
 	 * findByProductNameContainingAndProductPriceGreaterThanOrderByProductAddDateDesc(
 	 * name, productMinPrice, pageable);
-	 * 
+	 *
 	 * } else if (productMaxPrice != 0) {
-	 * 
+	 *
 	 * return productRepo.
 	 * findByProductNameContainingAndProductPriceLessThanOrderByProductAddDateDesc(
 	 * name, productMaxPrice, pageable);
-	 * 
+	 *
 	 * } else { return
 	 * productRepo.findByProductNameContainingOrderByProductAddDateDesc(name,
 	 * pageable); }
-	 * 
+	 *
 	 * }
 	 */
 

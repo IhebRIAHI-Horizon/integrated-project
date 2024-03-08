@@ -31,11 +31,11 @@ $ mvn test
 [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
 [INFO]
 
-[INFO] 
+[INFO]
 [INFO] Results:
-[INFO] 
+[INFO]
 [INFO] Tests run: 14, Failures: 0, Errors: 0, Skipped: 0
-[INFO] 
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -43,4 +43,3 @@ $ mvn test
 [INFO] Finished at: 2023-11-16T16:44:52Z
 [INFO] ------------------------------------------------------------------------
 ```
-

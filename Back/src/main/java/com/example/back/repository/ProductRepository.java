@@ -29,7 +29,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	 * findByProductForAndProductNameContainingAndProductPriceBetweenOrderByProductAddDateDesc(
 	 * String gender, String name, double productMinPrice, double productMaxPrice,
 	 * Pageable pageable);
-	 * 
+	 *
 	 */
 
 	@Query("SELECT p " + "FROM product p " + "WHERE "
@@ -49,7 +49,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
 	 * ) Page<Product>
 	 * findByProductForAndProductNameContainingAndProductPriceGreaterThanOrderByProductAddDateDesc(
 	 * String gender, String name, double productMinPrice, Pageable pageable);
-	 * 
+	 *
 	 * @Query("SELECT p FROM product p WHERE ( CASE WHEN ?1 <> '' THEN p.productFor = ?1 ELSE TRUE END OR p.productFor = 'Both' ) AND p.productName LIKE %?2% AND p.productPrice <= ?3 ORDER BY productAddDate DESC   "
 	 * ) Page<Product>
 	 * findByProductForAndProductNameContainingAndProductPriceLessThanOrderByProductAddDateDesc(
