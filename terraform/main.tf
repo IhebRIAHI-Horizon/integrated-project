@@ -28,10 +28,6 @@ resource "aws_s3_bucket" "static-content-bucket" {
   bucket = "static.horizon.com"
   acl    = "private"
   policy = file("policies/static.horizon.com.policy.json")
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-  }
   tags = {
     Name        = "horizon"
     Environment = "production"
