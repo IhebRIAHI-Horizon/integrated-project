@@ -3,25 +3,31 @@ import { Injectable } from '@angular/core';
 import { Cart } from '../interfaces/cart';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class CartServicesService {
+
   private readonly url = 'http://localhost:3000';
   private cartData: Cart[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  addToCart(product: Cart): void {
-    if (product?.size >= 0) throw new Error('product quantity is undefined!');
+  addToCart(product: Cart) {
 
-    const existingProduct = this.cartData.find((p) => p._id === product._id);
-    if (existingProduct == undefined || existingProduct.size === product.size) {
-      this.cartData.push(product);
-      return;
+    if (product.size != "" && product.size!=null && product.size!=undefined) {
+      const existingProduct = this.cartData.find(p => p._id === product._id);
+      if (existingProduct) {
+        if (existingProduct.size === product.size) {
+          existingProduct.quant += product.quant;
+          existingProduct.total += product.total;
+        } else {
+          this.cartData.push(product);
+        }
+      } else {
+        this.cartData.push(product);
+      }
     }
 
-    existingProduct.quant += product.quant;
-    existingProduct.total += product.total;
   }
 
   getCart() {
@@ -29,10 +35,30 @@ export class CartServicesService {
   }
 
   deleteFromCart(product: Cart) {
-    this.cartData = this.cartData.filter((i) => i._id !== product._id);
+    this.cartData = this.cartData.filter(i => i._id !== product._id);
   }
 
   cartProductsNumber(): number {
     return this.cartData.length;
   }
+
+  addTodb() {
+    console.log('Cart:', this.cartData);
+    // After adding the product to the cart, send a POST request to your backend API
+    for (let i of this.cartData) {
+      console.log('cart ::', this.cartData.indexOf(i));
+      console.log(i);
+      this.http.post<any>('http://localhost:8080/api/cart', i).subscribe(
+        (response) => {
+          console.log('Cart saved successfully:', response);
+
+        },
+        (error) => {
+          console.error('Error saving cart:', error);
+        }
+      );
+    }
+
+  }
+
 }
