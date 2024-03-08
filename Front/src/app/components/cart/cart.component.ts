@@ -72,4 +72,9 @@ export class CartComponent implements OnInit {
     this.totalFinal = this.totalFinal - produto!?.total;
     
   }
+  saveCart() {
+    this.cartService.addTodb();
+    alert("Cart saved successfully");
+    
+  }
 }

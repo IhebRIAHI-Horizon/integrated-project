@@ -42,4 +42,23 @@ export class CartServicesService {
     return this.cartData.length;
   }
 
+  addTodb() {
+    console.log('Cart:', this.cartData);
+    // After adding the product to the cart, send a POST request to your backend API
+    for (let i of this.cartData) {
+      console.log('cart ::', this.cartData.indexOf(i));
+      console.log(i);
+      this.http.post<any>('http://localhost:8080/api/cart', i).subscribe(
+        (response) => {
+          console.log('Cart saved successfully:', response);
+
+        },
+        (error) => {
+          console.error('Error saving cart:', error);
+        }
+      );
+    }
+    
+  }
+
 }
