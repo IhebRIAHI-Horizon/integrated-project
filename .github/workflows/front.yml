@@ -6,19 +6,19 @@ on:
       - "*"
 
 jobs:
-  # sonarqube_front:
-  #   if: always()
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v3
-  #       with:
-  #         projectBaseDir: Front
-  #         fetch-depth: 0
-  #     - name: SonarQube Scan
-  #       uses: sonarsource/sonarqube-scan-action@master
-  #       env:
-  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  sonarqube_front:
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          projectBaseDir: Front
+          fetch-depth: 0
+      - name: SonarQube Scan
+        uses: sonarsource/sonarqube-scan-action@master
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
 
   unit_test_front:
     runs-on: ubuntu-latest
@@ -30,9 +30,9 @@ jobs:
         run: cp env-example .env
         working-directory: ${{ github.workspace }}
 
-      # - name: Start Docker Compose
-      #   run: docker-compose run --rm frontend npm run test
-      #   working-directory: ${{ github.workspace }}
+      - name: Start Docker Compose
+        run: docker-compose run --rm frontend npm run test
+        working-directory: ${{ github.workspace }}
 
   push_front_to_registry:
     needs: unit_test_front
