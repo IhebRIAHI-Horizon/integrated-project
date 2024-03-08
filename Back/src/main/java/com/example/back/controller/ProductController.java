@@ -1,8 +1,9 @@
 package com.example.back.controller;
 
-import com.example.back.entity.PageResponse;
+import com.example.back.dto.PageResponse;
 import com.example.back.entity.Product;
 import com.example.back.service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
@@ -13,27 +14,24 @@ import java.util.Set;
 @RequestMapping("/api/products")
 public class ProductController {
 
-	private final ProductService productService;
-
-	public ProductController(ProductService productService) {
-		this.productService = productService;
-	}
+	@Autowired
+	private ProductService productService;
 
 	@GetMapping("")
 	public Page<Product> getProducts(@RequestParam(name = "page", required = false, defaultValue = "0") int page,
-			@RequestParam(name = "size", required = false, defaultValue = "0") int size) {
+									 @RequestParam(name = "size", required = false, defaultValue = "0") int size) {
 		return productService.getProducts(page, size);
 	}
 
 	@GetMapping("search")
 	public PageResponse getProducts(@RequestParam(name = "gender", required = false, defaultValue = "") String gender,
-			@RequestParam(name = "name", required = false, defaultValue = "") String name,
-			@RequestParam(name = "page", required = true, defaultValue = "0") int page,
-			@RequestParam(name = "size", required = true, defaultValue = "12") int size,
-			@RequestParam(name = "minPrice", required = false, defaultValue = "0") double productMinPrice,
-			@RequestParam(name = "maxPrice", required = false, defaultValue = "0") double productMaxPrice,
-			@RequestParam(name = "colors", required = false) Set<String> colors,
-			@RequestParam(name = "type", required = false, defaultValue = "") String type) {
+									@RequestParam(name = "name", required = false, defaultValue = "") String name,
+									@RequestParam(name = "page", required = true, defaultValue = "0") int page,
+									@RequestParam(name = "size", required = true, defaultValue = "12") int size,
+									@RequestParam(name = "minPrice", required = false, defaultValue = "0") double productMinPrice,
+									@RequestParam(name = "maxPrice", required = false, defaultValue = "0") double productMaxPrice,
+									@RequestParam(name = "colors", required = false) Set<String> colors,
+									@RequestParam(name = "type", required = false, defaultValue = "") String type) {
 		Page<Product> dataPage;
 		/*
 		 * if(name.equals("")) { dataPage = productService.getProductsByGender(gender,
@@ -41,7 +39,7 @@ public class ProductController {
 		 * dataPage = productService.getProductsByName( name, PageRequest.of(page,
 		 * size), productMinPrice, productMaxPrice); }
 		 */
-		if (gender == null) {
+		if(gender==null) {
 			System.out.println("gender is null");
 		}
 		dataPage = productService.getProductsByGender(gender, name, PageRequest.of(page, size), productMinPrice,

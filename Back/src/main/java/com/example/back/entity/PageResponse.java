@@ -1,8 +1,11 @@
-package com.example.back.entity;
+package com.example.back.dto;
+
+
+import com.example.back.entity.Product;
 
 import java.util.List;
 
-public class PageResponse {
+public class PageResponse  {
 
 	private List<Product> content;
 	private int totalPages;
@@ -37,5 +40,6 @@ public class PageResponse {
 	public void setTotalPages(int totalPages) {
 		this.totalPages = totalPages;
 	}
+
 
 }

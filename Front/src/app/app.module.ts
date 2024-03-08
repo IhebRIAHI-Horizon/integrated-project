@@ -26,6 +26,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { NewCollectionComponent } from './components/new-collection/new-collection.component';
 import { TopComponent } from './components/top/top.component';
 import { CartComponent } from './components/cart/cart.component';
+import { RegisterComponent } from './auth/components/register/register.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,11 @@ const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  {
+    path: 'register',
+    component: RegisterComponent
+  }
+  ,
   {
     path: 'about',
     component: AboutComponent,
@@ -57,6 +63,7 @@ const routes: Routes = [
     TopComponent,
     NewCollectionComponent,
     CartComponent,
+    RegisterComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
